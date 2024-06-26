@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Actor>
+@{
+    ViewData["Title"] = "Actors List";
+}
+<a asp-action="Create" class="btn btn-primary">Add New Actor</a>
+<table class="table">
+    <thead>
+        <tr class="col">
+            <th>@Html.DisplayNameFor(model => model.Profilepicture)</th>
+            <th>@Html.DisplayNameFor(model => model.FullName)</th>
+            <th>@Html.DisplayNameFor(model => model.Bio)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+            <tr scope="row">
+                <td><img class="rounded-circle w-25" src="@item.Profilepicture" alt="@item.FullName image"/></td>
+                <td class="pt-4">@item.FullName</td>
+                <td class="pt-4">@item.Bio</td>
+                <td class="pt-4">
+                    <a class="btn btn-outline-primary" asp-action="Edit" asp-route-id="@item.ActorId"><i class="bi bi-pencil-square"></i>Edit</a>|
+                    <a class="btn btn-outline-info" asp-action="Details" asp-route-id="@item.ActorId"> <i class="bi bi-eye-fill"></i>Details</a>|
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.ActorId"><i class="bi bi-trash-fill"></i>Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
